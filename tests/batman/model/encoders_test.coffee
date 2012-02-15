@@ -82,6 +82,15 @@ test "key ending with ? marked for decoding should be decoded", ->
   p.fromJSON(json)
   ok p.get('broken?'), "Cool Snowboard"
 
+QUnit.module "Batman.Model: encoding/decoding to/from JSON with custom primary Key"
+  setup: ->
+    class @Product extends Batman.Model
+      @primaryKey: '_id'
+
+test "undefined primaryKey shouldn't be encoded", ->
+  p = new @Product
+  deepEqual p.toJSON(), {}
+
 QUnit.module "Batman.Model: encoding: custom encoders/decoders"
   setup: ->
     class @Product extends Batman.Model

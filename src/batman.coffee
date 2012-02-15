@@ -2698,7 +2698,7 @@ class Batman.Model extends Batman.Object
             obj[key] = encodedVal
 
     if @constructor.primaryKey isnt 'id'
-      obj[@constructor.primaryKey] = @get('id')
+      obj[@constructor.primaryKey] = @get('id') unless @get('id') is undefined
       delete obj.id
 
     obj
